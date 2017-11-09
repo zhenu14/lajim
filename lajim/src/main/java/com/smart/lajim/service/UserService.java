@@ -18,7 +18,8 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    @Autowired void setLoginLogDao(LoginLogDao loginLogDao){
+    @Autowired
+    void setLoginLogDao(LoginLogDao loginLogDao){
         this.loginLogDao = loginLogDao;
     }
 

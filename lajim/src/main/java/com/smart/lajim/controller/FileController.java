@@ -1,20 +1,34 @@
 package com.smart.lajim.controller;
 
+import com.smart.lajim.jqGridUtil.DataRequest;
+import com.smart.lajim.jqGridUtil.DataResponse;
+import com.smart.lajim.service.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/file")
 public class FileController {
 
+    private FileService fileService;
+    @Autowired
+    void setFileService(FileService fileService){
+        this.fileService = fileService;
+    }
+
     @RequestMapping(value = "/toUpload.html")
-    public String upload(){
+    public String toUpload(){
         return "file/upload";
     }
 
@@ -46,7 +60,7 @@ public class FileController {
      * @throws Exception
      */
     @RequestMapping("/download.html")
-    public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{
+    public void download(HttpServletRequest request,HttpServletResponse response) throws Exception{
         //模拟文件，myfile.txt为需要下载的文件
         String fileName = request.getSession().getServletContext().getRealPath("upload")+"/shiro.txt";
         //获取输入流
@@ -66,5 +80,38 @@ public class FileController {
             out.flush();
         }
         out.close();
+    }
+
+    @RequestMapping(value = "/fileManage.html")
+    public String fileManage(){
+        return "file/fileManage";
+    }
+
+    @RequestMapping
+    public String listFile(){
+        List files = fileService.listAllFiles();
+        return "";
+    }
+
+    @RequestMapping(value = "/listFile.html")
+    @ResponseBody
+    public DataResponse<com.smart.lajim.domain.File> list(@RequestParam(defaultValue="1",value="page") String page,
+                                                          @RequestParam(defaultValue="20",value="rows") String rows,
+                                                          @RequestParam("sidx") String sidx,
+                                                          @RequestParam("sord") String sord,
+                                                          @RequestParam("_search") boolean search
+    ){
+        try {
+            DataRequest request = new DataRequest();
+            request.setPage(StringUtils.isEmpty(page) ? 1 : Integer.valueOf(page));
+            request.setRows(StringUtils.isEmpty(rows) ? 20 : Integer.valueOf(rows));
+            request.setSidx(sidx);
+            request.setSord(sord);
+            request.setSearch(search);
+            return fileService.search(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

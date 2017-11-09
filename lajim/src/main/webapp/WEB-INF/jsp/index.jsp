@@ -20,7 +20,7 @@
 									{"menuid":"12","menuname":"角色管理","icon":"icon-role","url":""},
 									{"menuid":"13","menuname":"权限设置","icon":"icon-set","url":""},
 									{"menuid":"14","menuname":"系统日志","icon":"icon-log","url":""},
-                                    {"menuid":"15","menuname":"文件上传","icon":"icon-log","url":"file/toUpload.html"}
+                                    {"menuid":"15","menuname":"文件上传","icon":"icon-log","url":"file//fileManage.html"}
 								]
 						},{"menuid":"20","icon":"icon-sys","menuname":"商城管理",
 							"menus":[{"menuid":"21","menuname":"商品分类","icon":"icon-nav","url":""},
