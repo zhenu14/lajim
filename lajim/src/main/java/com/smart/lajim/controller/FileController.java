@@ -3,19 +3,26 @@ package com.smart.lajim.controller;
 import com.smart.lajim.jqGridUtil.DataRequest;
 import com.smart.lajim.jqGridUtil.DataResponse;
 import com.smart.lajim.service.FileService;
+import org.aspectj.apache.bcel.classfile.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/file")
@@ -32,14 +39,9 @@ public class FileController {
         return "file/upload";
     }
 
-    /**
-     * 文件上传功能
-     * @param file
-     * @return
-     * @throws IOException
-     */
     @RequestMapping(value = "/upload.html")
     public String upload(MultipartFile file, HttpServletRequest request) throws IOException {
+            System.out.println("###########upload");
             String path = request.getSession().getServletContext().getRealPath("upload");
             String fileName = file.getOriginalFilename();
             System.out.println(path);
@@ -52,13 +54,7 @@ public class FileController {
             file.transferTo(dir);
             return "file/upload";
     }
-
-    /**
-     * 文件下载功能
-     * @param request
-     * @param response
-     * @throws Exception
-     */
+    
     @RequestMapping("/download.html")
     public void download(HttpServletRequest request,HttpServletResponse response) throws Exception{
         //模拟文件，myfile.txt为需要下载的文件
@@ -114,4 +110,60 @@ public class FileController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/addFile.html")
+    @ResponseBody
+    public Map addFile(HttpServletRequest request, HttpServletResponse response){
+        return null;
+    }
+
+    @RequestMapping(value = "uploadFile.html")
+    @ResponseBody //ajax请求必填
+    public Map<String, Object> uploadFile(HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+        System.out.println("###########uploadFile");
+        Map<String, Object> map = new HashMap<String,Object>();
+
+        com.smart.lajim.domain.File vo = new com.smart.lajim.domain.File();
+
+        //取得上传的文件
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile("filename");
+
+        //得到文件名称
+
+        String fileName = file.getOriginalFilename();
+
+        System.out.println("###########fileName:" + fileName);
+
+        String fileRealPath = request.getSession().getServletContext().getRealPath("/upload/");
+
+        System.out.println("###########fileRealPath:" + fileRealPath);
+
+        //判断文件夹是否存在
+        File targerFile = new File(fileRealPath);
+        //判断是否存在目录
+        if(!targerFile.exists()) {
+            targerFile.mkdirs();
+        }
+
+        //保存文件
+        File uploadFile = new File(fileRealPath+fileName);
+        FileCopyUtils.copy(file.getBytes(), uploadFile);
+
+        //配置文件实体信息
+//        vo.setFilepath(webPath+randomName);//路径
+        vo.setFilepath(fileRealPath+fileName);//路径
+        vo.setFilename(fileName);//文件名
+        vo.setCreatetime(new Date());
+        vo.setCreateuser(1);
+        //返回上传信息
+        fileService.insert(vo);
+        Map<String, String> data = new HashMap<String,String>();
+        data.put("msg","上传成功");
+        data.put("error","上传失败");
+        map.put("data", data);
+        return map;
+    }
 }
+

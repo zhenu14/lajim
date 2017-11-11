@@ -1,5 +1,8 @@
 package com.smart.lajim.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class File {
@@ -33,6 +36,8 @@ public class File {
         this.filepath = filepath;
     }
 
+    @DateTimeFormat(pattern = "yyyy-dd-MM HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-dd-MM HH:mm:ss")
     public Date getCreatetime() {
         return createtime;
     }
