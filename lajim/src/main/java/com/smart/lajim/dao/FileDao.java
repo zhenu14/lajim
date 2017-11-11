@@ -58,7 +58,7 @@ public class FileDao {
         RowMapper<File> rowMapper = new BeanPropertyRowMapper<File>(File.class);
         List<File> files = jdbcTemplate.query(sql, rowMapper,args);
         for(File file : files) {
-            System.out.println(file.getId());
+            System.out.println(file.getCreatetime());
         }
         return files;
     }

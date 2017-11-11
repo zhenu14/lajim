@@ -32,7 +32,7 @@
 		   		{name:'filename',index:'filename', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
 		   		{name:'filepath',index:'filepath', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
 		   		{name:'createtime',index:'createtime', width:100, editable:false,  editoptions:{readonly:true,size:10}},
-		   		{name:'createuser',index:'lastName', width:100, editable:false, editoptions:{readonly:true,size:10}}
+		   		{name:'createuser',index:'createuser', width:100, editable:false, editoptions:{readonly:true,size:10}}
 		   	],
 		   	postData: {},
 			rowNum:10,
@@ -80,15 +80,15 @@
 				} 
 		);
 		
-		$("#grid").navButtonAdd('#pager',
-				{ 	caption:"Edit", 
-					buttonicon:"ui-icon-pencil", 
-					onClickButton: editRow,
-					position: "last", 
-					title:"", 
-					cursor: "pointer"
-				} 
-		);
+//		$("#grid").navButtonAdd('#pager',
+//				{ 	caption:"Edit",
+//					buttonicon:"ui-icon-pencil",
+//					onClickButton: editRow,
+//					position: "last",
+//					title:"",
+//					cursor: "pointer"
+//				}
+//		);
 		
 		$("#grid").navButtonAdd('#pager',
 			{ 	caption:"Delete", 
@@ -156,63 +156,63 @@
 	} // end of addRow
 
 
-	function editRow() {
-   		$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:true, size:10}});
-   		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
-   		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:false}});
+	<%--function editRow() {--%>
+   		<%--$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:true, size:10}});--%>
+   		<%--$("#grid").jqGrid('setColProp', 'password', {hidden: true});--%>
+   		<%--$("#grid").jqGrid('setColProp', 'password', {editrules:{required:false}});--%>
 
-		// Get the currently selected row
-		var row = $('#grid').jqGrid('getGridParam','selrow');
+		<%--// Get the currently selected row--%>
+		<%--var row = $('#grid').jqGrid('getGridParam','selrow');--%>
 
-		if( row != null ) {
+		<%--if( row != null ) {--%>
 
-			$('#grid').jqGrid('editGridRow', row,
-				{	url: '${editUrl}',
-					editData: {},
-			        recreateForm: true,
-			        beforeShowForm: function(form) {
-			            $('#pData').hide();
-			            $('#nData').hide();
-			        },
-					beforeInitData: function(form) {},
-					closeAfterEdit: true,
-					reloadAfterSubmit:true,
-					afterSubmit : function(response, postdata)
-					{
-			            var result = eval('(' + response.responseText + ')');
-						var errors = "";
+			<%--$('#grid').jqGrid('editGridRow', row,--%>
+				<%--{	url: '${editUrl}',--%>
+					<%--editData: {},--%>
+			        <%--recreateForm: true,--%>
+			        <%--beforeShowForm: function(form) {--%>
+			            <%--$('#pData').hide();--%>
+			            <%--$('#nData').hide();--%>
+			        <%--},--%>
+					<%--beforeInitData: function(form) {},--%>
+					<%--closeAfterEdit: true,--%>
+					<%--reloadAfterSubmit:true,--%>
+					<%--afterSubmit : function(response, postdata)--%>
+					<%--{--%>
+			            <%--var result = eval('(' + response.responseText + ')');--%>
+						<%--var errors = "";--%>
 
-			            if (result.success == false) {
-							for (var i = 0; i < result.message.length; i++) {
-								errors +=  result.message[i] + "<br/>";
-							}
-			            }  else {
-			            	$('#msgbox').text('Entry has been edited successfully');
-							$('#msgbox').dialog(
-									{	title: 'Success',
-										modal: true,
-										buttons: {"Ok": function()  {
-											$(this).dialog("close");}
-										}
-									});
-		                }
-				    	// only used for adding new records
-				    	var newId = null;
+			            <%--if (result.success == false) {--%>
+							<%--for (var i = 0; i < result.message.length; i++) {--%>
+								<%--errors +=  result.message[i] + "<br/>";--%>
+							<%--}--%>
+			            <%--}  else {--%>
+			            	<%--$('#msgbox').text('Entry has been edited successfully');--%>
+							<%--$('#msgbox').dialog(--%>
+									<%--{	title: 'Success',--%>
+										<%--modal: true,--%>
+										<%--buttons: {"Ok": function()  {--%>
+											<%--$(this).dialog("close");}--%>
+										<%--}--%>
+									<%--});--%>
+		                <%--}--%>
+				    	<%--// only used for adding new records--%>
+				    	<%--var newId = null;--%>
 
-						return [result.success, errors, newId];
-					}
-				});
-		} else {
-			$('#msgbox').text('You must select a record first!');
-			$('#msgbox').dialog(
-					{	title: 'Error',
-						modal: true,
-						buttons: {"Ok": function()  {
-							$(this).dialog("close");}
-						}
-					});
-		}
-	}
+						<%--return [result.success, errors, newId];--%>
+					<%--}--%>
+				<%--});--%>
+		<%--} else {--%>
+			<%--$('#msgbox').text('You must select a record first!');--%>
+			<%--$('#msgbox').dialog(--%>
+					<%--{	title: 'Error',--%>
+						<%--modal: true,--%>
+						<%--buttons: {"Ok": function()  {--%>
+							<%--$(this).dialog("close");}--%>
+						<%--}--%>
+					<%--});--%>
+		<%--}--%>
+	<%--}--%>
 
 	function deleteRow() {
 		// Get the currently selected row

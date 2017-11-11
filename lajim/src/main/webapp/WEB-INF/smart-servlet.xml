@@ -27,6 +27,50 @@
 		<property name="maxUploadSize" value="5242440"></property>
 	</bean>
 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<!--json转换器-->
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mappingJacksonHttpMessageConverter"
+		  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name = "supportedMediaTypes">
+			<list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text"/>
+					<constructor-arg index="1" value="plain"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="*"/>
+					<constructor-arg index="1" value="*"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text"/>
+					<constructor-arg index="1" value="*"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application"/>
+					<constructor-arg index="1" value="json"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 	<mvc:annotation-driven>
 		<!--<mvc:message-converters>-->
 			<!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->

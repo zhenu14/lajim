@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.smart.lajim.service.UserServiceTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.098 sec - in com.smart.lajim.service.UserServiceTest
