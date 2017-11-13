@@ -54,7 +54,7 @@ public class FileController {
             file.transferTo(dir);
             return "file/upload";
     }
-    
+
     @RequestMapping("/download.html")
     public void download(HttpServletRequest request,HttpServletResponse response) throws Exception{
         //模拟文件，myfile.txt为需要下载的文件

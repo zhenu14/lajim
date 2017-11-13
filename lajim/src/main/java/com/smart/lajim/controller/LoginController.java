@@ -23,11 +23,6 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value = "/demo.html")
-    public String demo(){
-        return "jqForm";
-    }
-
     @RequestMapping(value = "/login.html")
     public ModelAndView login(HttpServletRequest request,LoginCommand loginCommand){
         boolean isValid = userService.hasMatchUser(loginCommand.getUserName(),loginCommand.getPassword());

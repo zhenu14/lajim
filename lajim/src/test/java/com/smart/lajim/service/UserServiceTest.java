@@ -26,7 +26,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
      public void testFindUserByUserName()throws Exception{
         for(int i =0; i< 100;i++) {
             User user = userService.findUserByUserName("admin");
-            assertEquals(user.getUserName(), "admin");
+            assertEquals(user.getUsername(), "admin");
         }
     }
 
@@ -35,7 +35,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
 	public void testAddLoginLog() {
 		User user = userService.findUserByUserName("admin");
 		user.setUserId(1);
-		user.setUserName("admin");
+		user.setUsername("admin");
 		user.setLastIp("192.168.12.7");
 		user.setLastVisit(new Date());
 		userService.loginSuccess(user);

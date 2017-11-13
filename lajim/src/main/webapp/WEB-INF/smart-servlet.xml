@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
@@ -10,14 +11,24 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- 扫描web包，应用Spring的注解 -->
-	<context:component-scan base-package="com.smart.lajim.controller"/>
+	<context:component-scan base-package="com.smart.lajim.controller,com.smart.shiro.controller"/>
+
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
 	
 	<!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:viewClass="org.springframework.web.servlet.view.JstlView" 
+		p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/WEB-INF/jsp/"
 		p:suffix=".jsp" />
+
+	<!-- 控制器异常处理 -->
+	<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+	</bean>
+	<!--<bean class="com.github.zhangkaitao.shiro.chapter12.web.exception.DefaultExceptionHandler"/>-->
+
 
 	<!-- 定义文件解释器 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -70,6 +81,8 @@
 			</list>
 		</property>
 	</bean>
+
+
 
 	<mvc:annotation-driven>
 	<!--<mvc:annotation-driven conversion-service="conversionService">-->
