@@ -53,27 +53,13 @@ public class FileController {
             return "file/upload";
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of cbf01b7... #文件管理模块
-=======
->>>>>>> parent of cbf01b7... #文件管理模块
     /**
      * 文件下载功能
      * @param request
      * @param response
      * @throws Exception
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of cbf01b7... #文件管理模块
-=======
->>>>>>> parent of cbf01b7... #文件管理模块
-=======
->>>>>>> parent of cbf01b7... #文件管理模块
+
     @RequestMapping("/download.html")
     public void download(HttpServletRequest request,HttpServletResponse response) throws Exception{
         //模拟文件，myfile.txt为需要下载的文件
@@ -102,11 +88,6 @@ public class FileController {
         return "file/fileManage";
     }
 
-    @RequestMapping
-    public String listFile(){
-        List files = fileService.listAllFiles();
-        return "";
-    }
 
     @RequestMapping(value = "/listFile.html")
     @ResponseBody
