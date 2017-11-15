@@ -54,13 +54,25 @@ public class FileController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of cbf01b7... #文件管理模块
+=======
+>>>>>>> parent of cbf01b7... #文件管理模块
     /**
      * 文件下载功能
      * @param request
      * @param response
      * @throws Exception
      */
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of cbf01b7... #文件管理模块
+=======
+>>>>>>> parent of cbf01b7... #文件管理模块
+=======
 >>>>>>> parent of cbf01b7... #文件管理模块
     @RequestMapping("/download.html")
     public void download(HttpServletRequest request,HttpServletResponse response) throws Exception{
