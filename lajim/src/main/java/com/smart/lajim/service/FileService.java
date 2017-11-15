@@ -36,6 +36,7 @@ public class FileService {
         int page = request.getPage() <= 0 ? 1 : request.getPage();//当前显示页码
         List<File> list;
 
+
 //        Set<Criterion> set = initSearchCondition(request.isSearch(), request.getSearchField(), request.getSearchOper(), request.getSearchString());
         count = fileDao.getFileCount();
         System.out.println("@@@@@"+count);

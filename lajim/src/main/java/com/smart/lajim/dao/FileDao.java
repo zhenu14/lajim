@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 public class FileDao {
     private JdbcTemplate jdbcTemplate;
 
+
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -23,7 +24,7 @@ public class FileDao {
     public Boolean insertFile(File file) {
         try {
             String INSERT_FILE_SQL = " insert into t_files(filename,filepath,createtime,createuser)values(?,?,?,?)";
-            Object args[] = {file.getFilename(), file.getFilepath(), file.getCreatetime(), file.getCreateuser()};
+            Object args[] = {file.getFilepath(), file.getFilepath(), file.getCreatetime(), file.getCreateuser()};
             int temp = jdbcTemplate.update(INSERT_FILE_SQL, args);
             if (temp > 0) {
                 System.out.println("插入成功！");
@@ -56,9 +57,9 @@ public class FileDao {
         args = ArrayUtils.add(args, args.length, limit);
         RowMapper<File> rowMapper = new BeanPropertyRowMapper<File>(File.class);
         List<File> files = jdbcTemplate.query(sql, rowMapper,args);
-//        for(File file : files) {
-//            System.out.println(file.getCreatetime());
-//        }
+        for(File file : files) {
+            System.out.println(file.getCreatetime());
+        }
         return files;
     }
 }

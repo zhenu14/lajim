@@ -2,8 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:url value="/file/listFile.html" var="listUrl"/>
-<c:url value="/file/addFile.html" var="addUrl"/>
-<c:url value="/file/uploadFile.html" var="uploadUrl"/>
+<%--<c:url value="/users/create" var="addUrl"/>--%>
 <%--<c:url value="/users/update" var="editUrl"/>--%>
 <%--<c:url value="/users/delete" var="deleteUrl"/>--%>
 
@@ -18,7 +17,6 @@
 	<script type='text/javascript' src='<c:url value="/js/jqgrid/grid.locale-en-4.3.1.js"/>'></script>
 	<script type='text/javascript' src='<c:url value="/js/jqgrid/jquery.jqGrid.min.4.3.1.js"/>'></script>
 	<script type='text/javascript' src='<c:url value="/js/jqgrid/custom.js"/>'></script>
-	<script type='text/javascript' src='<c:url value="/js/ajaxfileupload.js"/>'></script>
 	
 	<title>文件管理</title>
 	
@@ -31,8 +29,8 @@
 		   	colNames:['Id', 'FileName', 'FilePath', 'CreateTime', 'CreateUser'],
 		   	colModel:[
 		   		{name:'id',index:'id', width:55, editable:false, editoptions:{readonly:true, size:10}, hidden:true},
-		   		{name:'filename',index:'filename', width:100, editable:true, edittype:"file", editrules:{required:true}, editoptions:{enctype:"multipart/form-data"}},
-		   		{name:'filepath',index:'filepath', width:100, editable:false, editoptions:{size:10}},
+		   		{name:'filename',index:'filename', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
+		   		{name:'filepath',index:'filepath', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
 		   		{name:'createtime',index:'createtime', width:100, editable:false,  editoptions:{readonly:true,size:10}},
 		   		{name:'createuser',index:'createuser', width:100, editable:false, editoptions:{readonly:true,size:10}}
 		   	],
@@ -103,80 +101,58 @@
 		);
 
 		// Toolbar Search
-//		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"});
+		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"});
 	});
 
 	function addRow() {
-//   		$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:false, size:10}});
-//   		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:true}});
+   		$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:false, size:10}});
+   		$("#grid").jqGrid('setColProp', 'password', {hidden: false});
+   		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:true}});
+
 		// Get the currently selected row
 		$('#grid').jqGrid('editGridRow','new',
-	    		{
-	    		    url: '${addUrl}',
+	    		{ 	url: '${addUrl}',
 					editData: {},
-                    jqModal:true,
-                    closeAfterEdit: true,
-                    recreateForm:true,
 	                serializeEditData: function(data){
+	                    data.id = 0;
 	                    return $.param(data);
 	                },
-                    onInitializeForm : function(formid){
-                        $(formid).attr('method','POST');
-                        $(formid).attr('action','');
-                        $(formid).attr('enctype','multipart/form-data');
-                    },
+				    recreateForm: true,
 				    beforeShowForm: function(form) {
-	                    console.log(form)
-//			            $('#pData').hide();
-//			            $('#nData').hide();
-//			            $('#password',form).addClass('ui-widget-content').addClass('ui-corner-all');
+			            $('#pData').hide();
+			            $('#nData').hide();
+			            $('#password',form).addClass('ui-widget-content').addClass('ui-corner-all');
 				    },
 					beforeInitData: function(form) {},
 					closeAfterAdd: true,
 					reloadAfterSubmit:true,
-                    afterSubmit : function(response, postdata){
-                        console.log("##afterSubmit")
-                        $.ajaxFileUpload({
-                                url: '${uploadUrl}',
-                                secureuri: false,
-                                fileElementId: 'filename',
-                                dataType: 'json',
-//                                data: { id: id},
-                                success: function (data,status) {
-                                    var msg = data['msg'];
-                                    alert(msg);
-                                },
-								error : function(data, status, e) {
-									alert("上传发生异常");
-								}
-						})
-                    }
-//					afterSubmit : function(response, postdata)
-//					{
-//				        var result = eval('(' + response.responseText + ')');
-//						var errors = "";
-//
-//				        if (result.success == false) {
-//							for (var i = 0; i < result.message.length; i++) {
-//								errors +=  result.message[i] + "<br/>";
-//							}
-//				        }  else {
-//				        	$('#msgbox').text('Entry has been added successfully');
-//							$('#msgbox').dialog(
-//									{	title: 'Success',
-//										modal: true,
-//										buttons: {"Ok": function()  {
-//											$(this).dialog("close");}
-//										}
-//									});
-//		                }
-//				    	// only used for adding new records
-//				    	var newId = null;
-//
-//						return [result.success, errors, newId];
-//					}
+					afterSubmit : function(response, postdata)
+					{
+				        var result = eval('(' + response.responseText + ')');
+						var errors = "";
 
+				        if (result.success == false) {
+							for (var i = 0; i < result.message.length; i++) {
+								errors +=  result.message[i] + "<br/>";
+							}
+				        }  else {
+				        	$('#msgbox').text('Entry has been added successfully');
+							$('#msgbox').dialog(
+									{	title: 'Success',
+										modal: true,
+										buttons: {"Ok": function()  {
+											$(this).dialog("close");}
+										}
+									});
+		                }
+				    	// only used for adding new records
+				    	var newId = null;
+
+						return [result.success, errors, newId];
+					}
 	    		});
+
+   		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
 	} // end of addRow
 
 
