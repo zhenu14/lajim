@@ -1,5 +1,7 @@
 package com.smart.lajim.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class File {
@@ -8,6 +10,7 @@ public class File {
     private String filepath;
     private Date createtime;
     private int createuser;
+    private String remarks;
 
     public int getId() {
         return id;
@@ -15,6 +18,14 @@ public class File {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public String getFilename() {
@@ -33,6 +44,7 @@ public class File {
         this.filepath = filepath;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCreatetime() {
         return createtime;
     }

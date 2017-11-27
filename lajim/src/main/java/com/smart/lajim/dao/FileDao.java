@@ -23,8 +23,8 @@ public class FileDao {
 
     public Boolean insertFile(File file) {
         try {
-            String INSERT_FILE_SQL = " insert into t_files(filename,filepath,createtime,createuser)values(?,?,?,?)";
-            Object args[] = {file.getFilepath(), file.getFilepath(), file.getCreatetime(), file.getCreateuser()};
+            String INSERT_FILE_SQL = " insert into t_files(filename,filepath,createtime,createuser,remarks)values(?,?,?,?,?)";
+            Object args[] = {file.getFilename(), file.getFilepath(), file.getCreatetime(), file.getCreateuser(),file.getRemarks()};
             int temp = jdbcTemplate.update(INSERT_FILE_SQL, args);
             if (temp > 0) {
                 System.out.println("插入成功！");
@@ -40,7 +40,7 @@ public class FileDao {
     }
 
     public List listAllFiles() {
-        String sql = "SELECT id,filename,filepath,createtime,createuser FROM t_files ";
+        String sql = "SELECT id,filename,filepath,createtime,createuser,remarks FROM t_files ";
         RowMapper<File> rowMapper = new BeanPropertyRowMapper<File>(File.class);
         List<File> files = jdbcTemplate.query(sql, rowMapper);
         return files;
@@ -61,5 +61,17 @@ public class FileDao {
             System.out.println(file.getCreatetime());
         }
         return files;
+    }
+
+    public boolean deleteFile(int id) {
+        String sql = "delete from t_files WHERE id = " + id;
+        int flag = jdbcTemplate.update(sql);
+        if (flag > 0) {
+            System.out.println("删除成功！");
+            return true;
+        } else {
+            System.out.println("删除失败");
+            return false;
+        }
     }
 }
