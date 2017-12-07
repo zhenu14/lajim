@@ -18,7 +18,7 @@ public class LoginLogDao {
     }
 
     public void insertLoginLog(LoginLog loginLog){
-        Object[] args = {loginLog.getUserId(),loginLog.getIp(),loginLog.getLoginLogId()};
+        Object[] args = {loginLog.getUserId(),loginLog.getIp(),loginLog.getLoginDate()};
         jdbcTemplate.update(INSERT_LOGIN_LOG_SQL,args);
     }
 }

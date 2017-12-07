@@ -13,13 +13,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FileDao {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
-    @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public Boolean insertFile(File file) {
         try {

@@ -18,8 +18,7 @@ function InitLeftMenu() {
 
 		$('#nav').accordion('add', {
             title: n.menuname,
-            content: menulist,
-            iconCls: 'icon ' + n.icon
+            content: menulist
         });
 
     });
@@ -132,38 +131,7 @@ function tabCloseEven()
 		$('#mm-tabcloseright').click();
 		$('#mm-tabcloseleft').click();
 	});
-	//关闭当前右侧的TAB
-	$('#mm-tabcloseright').click(function(){
-		var nextall = $('.tabs-selected').nextAll();
-		if(nextall.length==0){
-			//msgShow('系统提示','后边没有啦~~','error');
-			alert('后边没有啦~~');
-			return false;
-		}
-		nextall.each(function(i,n){
-			var t=$('a:eq(0) span',$(n)).text();
-			$('#tabs').tabs('close',t);
-		});
-		return false;
-	});
-	//关闭当前左侧的TAB
-	$('#mm-tabcloseleft').click(function(){
-		var prevall = $('.tabs-selected').prevAll();
-		if(prevall.length==0){
-			alert('到头了，前边没有啦~~');
-			return false;
-		}
-		prevall.each(function(i,n){
-			var t=$('a:eq(0) span',$(n)).text();
-			$('#tabs').tabs('close',t);
-		});
-		return false;
-	});
 
-	//退出
-	$("#mm-exit").click(function(){
-		$('#mm').menu('hide');
-	})
 }
 
 //弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]

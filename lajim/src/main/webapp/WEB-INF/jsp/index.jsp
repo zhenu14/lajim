@@ -104,21 +104,21 @@
 <body class="easyui-layout" style="overflow-y: hidden"  scroll="no">
 
     <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background:  #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-        Hello~${user.userName}<span style="float:right; padding-right:20px;" class="head"><a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
+        <%--Hello~${user.userName}<span style="float:right; padding-right:20px;" class="head"><a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>--%>
     </div>
 
     <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
-<div id="nav" class="easyui-accordion" fit="true" border="false">
-		<!--  导航内容 -->
-				
+            <div id="nav" class="easyui-accordion" fit="true" border="false">
+		        <!--  导航内容 -->
+
 			</div>
 
     </div>
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
-			<div title="主页" style="padding:20px;overflow:hidden; color:red; " >
+            <div title="主页" style="padding:20px;overflow:hidden; color:red; " ></div>
 
 		</div>
     </div>
@@ -160,7 +160,6 @@
 		<div class="menu-sep"></div>
 		<div id="mm-exit">退出</div>
 	</div>
-
 
 </body>
 </html>

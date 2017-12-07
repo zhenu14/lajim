@@ -1,9 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<%--<c:url value="/users/create" var="addUrl"/>--%>
-<%--<c:url value="/users/update" var="editUrl"/>--%>
-<%--<c:url value="/users/delete" var="deleteUrl"/>--%>
 
 <html>
 <head>
@@ -73,19 +70,6 @@
         form.append($("<input></input>").attr("type", "hidden").attr("name", "filepath").attr("value", filepath));
         form.append($("<input></input>").attr("type", "hidden").attr("name", "filename").attr("value", filename));
         form.appendTo('body').submit().remove();
-//        $.post("/lajim/file/fileDownload.html",{"filepath":row.filepath,"filename":row.filename});
-//        $.ajax({
-//            type: "POST",
-//            data : {"filepath":row.filepath,"filename":row.filename},
-//            url: "fileDownload.html",
-//            success: function(data) {
-//				if (data.status == 'ok') {
-//					window.location.href = data.link;
-//				} else {
-//					alert(data.text);
-//				}
-//			}
-//		});
     }
 
     function deleteFile() {
@@ -94,7 +78,6 @@
             alert("请选择一个文件");
             return;
         }
-        alert(row.id);
 //        $.post("/lajim/file/fileDownload.html",{"filepath":row.filepath,"filename":row.filename});
         $.messager.confirm('Delete', '确定删除该文件？', function(r){
             if (r){

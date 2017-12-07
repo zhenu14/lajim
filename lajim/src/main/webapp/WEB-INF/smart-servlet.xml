@@ -83,6 +83,9 @@
 		<!--</mvc:message-converters>-->
 	</mvc:annotation-driven>
 
+	<!--<mvc:view-controller path="/" view-name="redirect:/admin/index"/>-->
+	<mvc:default-servlet-handler/>
+
 	<!-- 对静态资源文件的访问 -->
 	<!-- 所有的页面引用到css/**的资源都从css/*里面进行查找 -->
 	<mvc:resources mapping="/js/**" location="/js/"/>

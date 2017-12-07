@@ -2,8 +2,6 @@ package com.smart.lajim.service;
 
 import com.smart.lajim.dao.FileDao;
 import com.smart.lajim.domain.File;
-import com.smart.lajim.jqGridUtil.DataRequest;
-import com.smart.lajim.jqGridUtil.DataResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

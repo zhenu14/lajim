@@ -1,5 +1,7 @@
 package com.smart.lajim.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,10 +35,12 @@ public class LoginLog implements Serializable{
         this.ip = ip;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getLoginDate() {
         return loginDate;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public void setLoginDate(Date loginDate) {
         this.loginDate = loginDate;
     }
