@@ -4,7 +4,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
-    <title>Shiro综合案例</title>
+    <title>oooooooooooo</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout-default-latest.css">
     <link href="${ctx}/css/default.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="${ctx}/css/themes/metro/easyui.css" />
@@ -148,26 +148,5 @@
     </div>
 </div>
 
-<%--<iframe name="content" class="ui-layout-center"--%>
-        <%--src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>--%>
-<%--<div class="ui-layout-north">欢迎[<shiro:principal/>]学习Shiro综合案例，<a href="${pageContext.request.contextPath}/logout">退出</a></div>--%>
-
-<%--<div class="ui-layout-west">--%>
-    <%--功能菜单<br/>--%>
-    <%--<c:forEach items="${menus}" var="m">--%>
-        <%--<a href="${pageContext.request.contextPath}/${m.url}" target="content">${m.name}</a><br/>--%>
-    <%--</c:forEach>--%>
-<%--</div>--%>
-
-
-<%--<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>--%>
-<%--<script src="${pageContext.request.contextPath}/js/js/jquery.layout-latest.min.js"></script>--%>
-<%--<script>--%>
-    <%--$(function () {--%>
-        <%--$(document).ready(function () {--%>
-            <%--$('body').layout({ applyDemoStyles: true });--%>
-        <%--});--%>
-    <%--});--%>
-<%--</script>--%>
 </body>
 </html>

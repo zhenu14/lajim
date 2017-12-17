@@ -24,7 +24,7 @@ public class UserDao {
     }
 
     public User createUser(final User user) {
-        final String sql = "insert into sys_user(organization_id, username, password, salt, role_ids, locked) values(?,?,?,?,?,?)";
+        final String sql = "insert into sys_user( username, password, salt, role_ids, locked) values(?,?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -32,7 +32,6 @@ public class UserDao {
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
-                psst.setLong(count++, user.getOrganizationId());
                 psst.setString(count++, user.getUsername());
                 psst.setString(count++, user.getPassword());
                 psst.setString(count++, user.getSalt());
@@ -47,10 +46,10 @@ public class UserDao {
     }
 
     public User updateUser(User user) {
-        String sql = "update sys_user set organization_id=?,username=?, password=?, salt=?, role_ids=?, locked=? where id=?";
+        String sql = "update sys_user set username=?, password=?, salt=?, role_ids=?, locked=? where id=?";
         jdbcTemplate.update(
                 sql,
-                user.getOrganizationId(), user.getUsername(), user.getPassword(), user.getSalt(), user.getRoleIdsStr(), user.getLocked(), user.getId());
+                 user.getUsername(), user.getPassword(), user.getSalt(), user.getRoleIdsStr(), user.getLocked(), user.getId());
         return user;
     }
 
@@ -60,7 +59,7 @@ public class UserDao {
     }
 
     public User findOne(Long userId) {
-        String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where id=?";
+        String sql = "select id,  username, password, salt, role_ids as roleIdsStr, locked from sys_user where id=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), userId);
         if(userList.size() == 0) {
             return null;
@@ -69,13 +68,13 @@ public class UserDao {
     }
 
     public List<User> findAll() {
-        String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user";
+        String sql = "select id,  username, password, salt, role_ids as roleIdsStr, locked from sys_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
     }
 
 
     public User findByUsername(String username) {
-        String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where username=?";
+        String sql = "select id,  username, password, salt, role_ids as roleIdsStr, locked from sys_user where username=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), username);
         if(userList.size() == 0) {
             System.out.println("没有找到用户");

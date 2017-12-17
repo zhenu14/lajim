@@ -28,7 +28,6 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
 	    user.setPassword("qqq");
 	    user.setSalt("1");
 	    user.setRoleIds(list);
-	    user.setOrganizationId(Long.parseLong("1"));
 	    user.setLocked(false);
 		userService.createUser(user);
 	    assertNotNull("1");

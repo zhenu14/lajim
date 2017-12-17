@@ -10,10 +10,8 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/themes/icon.css">
     <script type="text/javascript" src="${ctx}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery.easyui.min.js"></script>
-    <style>.error{color:red;}</style>
 </head>
-<body bgcolor="#a9a9a9">
-<div class="error">${error}</div>
+<body bgcolor="#a9a9a9" onload="showError()">
 <div class="easyui-panel" title="New Topic" style="width:400px">
     <form id="loginForm" action="" method="post">
         <table cellpadding="5">
@@ -24,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <input class="easyui-textbox" name="password" data-options="prompt:'password',validType:'password'" iconCls="icon-lock" iconAlign=left style="width:100%;height:32px"/>
+                    <input type="password" class="easyui-textbox" name="password" data-options="prompt:'password',validType:'password'" iconCls="icon-lock" iconAlign=left style="width:100%;height:32px"/>
                 </td>
             </tr>
             <tr>
@@ -42,5 +40,23 @@
     </form>
 </div>
 
+<script type="text/javascript">
+    function showError(){
+        var error = "${error}";
+        if(error != ""){
+            $.messager.show({
+                title:'登录失败',
+                msg:"${error}",
+                timeout:1500,
+                style:{
+                    right:'',
+                    bottom:''
+                },
+                showType:'fade'
+            });
+        }
+    }
+
+</script>
 </body>
 </html>

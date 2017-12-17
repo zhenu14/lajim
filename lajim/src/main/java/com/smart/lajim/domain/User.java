@@ -10,7 +10,6 @@ import java.util.List;
 
 public class User implements Serializable {
     private Long id; //编号
-    private Long organizationId; //所属公司
     private String username; //用户名
     private String password; //密码
     private String salt; //加密密码的盐
@@ -31,14 +30,6 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(Long organizationId) {
-        this.organizationId = organizationId;
     }
 
     public String getUsername() {
@@ -135,7 +126,6 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", organizationId=" + organizationId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
