@@ -10,11 +10,11 @@
         <script type="text/javascript" src="${ctx}/static/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-            	  //模拟25000个异步请求，进行并发
-                var max = 25000;
+            	  //模拟35000个异步请求，进行并发
+                var max = 35000;
                 for (var i = 1; i <= max; i++) {
                     $.post({
-                        url: "grapRedPacketForVersion?redPacketId=3&userId=" + i,
+                        url: "grapRedPacketByRedis?redPacketId=5&userId=" + i,
                         success: function (result) {
                         }
                     });

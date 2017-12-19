@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
@@ -10,19 +11,23 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
     <context:property-placeholder location="classpath:resources.properties"/>
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
     <context:component-scan base-package="com.ssm.project.dao"/>
     <context:component-scan base-package="com.ssm.project.service"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${connection.url}"/>
         <property name="username" value="${connection.username}"/>
         <property name="password" value="${connection.password}"/>
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="maxActive" value="200"/>
+        <property name="maxIdle" value="20"/>
+        <property name="maxWait" value="30000"/>
+
     </bean>
     
     <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -81,5 +86,9 @@
         <property name="hashValueSerializer" ref="stringRedisSerializer"/>
         <!--<property name="valueSerializer" ref="jdkSerializationRedisSerializer"/>-->
     </bean>
+
+    <!-- 缺省的异步任务线程池 -->
+    <task:annotation-driven executor="asyncExecutor" />
+    <task:executor id="asyncExecutor" pool-size="5-10" queue-capacity="200" />
 
 </beans>
