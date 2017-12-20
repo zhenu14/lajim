@@ -1,4 +1,4 @@
-package com.ssm.chapter11.aop;
+package com.ssm.aoptest.aop;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

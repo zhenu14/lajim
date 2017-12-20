@@ -1,4 +1,4 @@
-package com.ssm.chapter11.aop;
+package com.ssm.aoptest.aop;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan("com.ssm.chapter11.aop")
+@ComponentScan("com.ssm.aoptest.aop")
 public class AopConfig {
 
     @Bean

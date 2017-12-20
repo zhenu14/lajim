@@ -1,4 +1,4 @@
-package com.ssm.chapter11.proxyGame;
+package com.ssm.aoptest.proxyGame;
 
 import java.lang.reflect.Proxy;
 import java.lang.reflect.Method;

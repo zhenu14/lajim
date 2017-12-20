@@ -1,4 +1,4 @@
-package com.ssm.chapter11.aop;
+package com.ssm.aoptest.aop;
 
 public interface RoleService {
     public void printRole(Role role);

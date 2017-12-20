@@ -1,4 +1,4 @@
-package com.ssm.chapter11.aop;
+package com.ssm.aoptest.aop;
 
 import org.aspectj.lang.annotation.*;
 
@@ -9,22 +9,22 @@ public class RoleAspect {
 
     }
 
-    @Before("execution(* com.ssm.chapter11.aop.RoleServiceImpl.printRole(..))")
+    @Before("execution(* com.ssm.aoptest.aop.RoleServiceImpl.printRole(..))")
     public void Before(){
         System.out.println("#Before.......");
     }
 
-    @After("execution(* com.ssm.chapter11.aop.RoleServiceImpl.printRole(..))")
+    @After("execution(* com.ssm.aoptest.aop.RoleServiceImpl.printRole(..))")
     public void After(){
         System.out.println("#After.......");
     }
 
-    @AfterReturning("execution(* com.ssm.chapter11.aop.RoleServiceImpl.printRole(..))")
+    @AfterReturning("execution(* com.ssm.aoptest.aop.RoleServiceImpl.printRole(..))")
     public void AfterReturning(){
         System.out.println("#AfterReturning.......");
     }
 
-    @AfterThrowing("execution(* com.ssm.chapter11.aop.RoleServiceImpl.printRole(..))")
+    @AfterThrowing("execution(* com.ssm.aoptest.aop.RoleServiceImpl.printRole(..))")
     public void AfterThrowing(){
         System.out.println("#AfterThrowing.......");
     }

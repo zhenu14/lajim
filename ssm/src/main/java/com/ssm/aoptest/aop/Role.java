@@ -1,4 +1,4 @@
-package com.ssm.chapter11.aop;
+package com.ssm.aoptest.aop;
 
 public class Role {
     private int ID;

@@ -1,4 +1,4 @@
-package com.ssm.chapter11.proxyGame;
+package com.ssm.aoptest.proxyGame;
 
 public interface RoleService {
     public void printRole(Role role);
