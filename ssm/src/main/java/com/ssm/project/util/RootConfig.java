@@ -16,7 +16,7 @@
 //import org.springframework.data.redis.serializer.StringRedisSerializer;
 //import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 //import org.springframework.stereotype.Repository;
-//import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.service;
 //import org.springframework.transaction.PlatformTransactionManager;
 //import org.springframework.transaction.annotation.EnableTransactionManagement;
 //import org.springframework.transaction.annotation.TransactionManagementConfigurer;
@@ -27,7 +27,7 @@
 //
 //@Configuration
 ////定义Spring 扫描的包
-//@ComponentScan(value= "com.ssm.project.*", includeFilters= {@ComponentScan.Filter(type = FilterType.ANNOTATION, value ={Service.class})})
+//@ComponentScan(value= "com.ssm.project.*", includeFilters= {@ComponentScan.Filter(type = FilterType.ANNOTATION, value ={service.class})})
 ////使用事务驱动管理器
 //@EnableTransactionManagement
 ////实现接口TransactionManagementConfigurer，这样可以配置注解驱动事务

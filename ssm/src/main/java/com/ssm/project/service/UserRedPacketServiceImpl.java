@@ -139,6 +139,8 @@ public class UserRedPacketServiceImpl implements UserRedPacketService{
             + "return 1 \n";
     // 在缓存LUA脚本后，使用该变量保存Redis返回的32位的SHA1编码，使用它去执行缓存的LUA脚本[加入这句话]
     String sha1 = null;
+    Long start ;
+    Long end ;
 
     @Override
     public Long grapRedPacketByRedis(Long redPacketId, Long userId) {
