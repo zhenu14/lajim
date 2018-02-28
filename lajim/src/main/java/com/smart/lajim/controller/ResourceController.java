@@ -1,6 +1,9 @@
 package com.smart.lajim.controller;
 
+import com.smart.lajim.domain.Resource;
+import com.smart.lajim.domain.ResourceTree;
 import com.smart.lajim.service.ResourceService;
+import com.smart.lajim.util.TreeNode;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/resource")
@@ -28,10 +28,18 @@ public class ResourceController {
         return "resource/list";
     }
 
-    @RequestMapping(value = "/listRole.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/listResource.html", method = RequestMethod.POST)
     @ResponseBody
-    public List showCreateForm(Model model) {
-        return resourceService.findAll();
+    public Map listResource() {
+        List<ResourceTree> resources = resourceService.findAll2();
+        for (ResourceTree resource:resources) {
+            if(resource.get_parentId() == 0){
+//                resource.set_parentId(null);
+            }
+        }
+        Map<String,List> result = new HashMap<String, List>();
+        result.put("rows",resources);
+        return result;
     }
 
 }

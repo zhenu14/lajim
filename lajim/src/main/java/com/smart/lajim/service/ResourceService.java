@@ -2,6 +2,7 @@ package com.smart.lajim.service;
 
 import com.smart.lajim.dao.ResourceDao;
 import com.smart.lajim.domain.Resource;
+import com.smart.lajim.domain.ResourceTree;
 import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,10 @@ public class ResourceService {
 
     public List<Resource> findAll() {
         return resourceDao.findAll();
+    }
+
+    public List<ResourceTree> findAll2() {
+        return resourceDao.findAll2();
     }
 
     public Set<String> findPermissions(Set<Long> resourceIds) {

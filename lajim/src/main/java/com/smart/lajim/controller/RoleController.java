@@ -35,6 +35,7 @@ public class RoleController {
         return "role/list";
     }
 
+    @RequiresPermissions("role:view")
     @RequestMapping(value = "/listRole.html", method = RequestMethod.GET)
     @ResponseBody
     public List showCreateForm(Model model) {

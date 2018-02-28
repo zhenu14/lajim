@@ -43,7 +43,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.29" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.25" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.8.7" level="project" />
@@ -101,5 +101,7 @@
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: dom4j:dom4j:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.2" level="project" />
+    <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.1" level="project" />
   </component>
 </module>

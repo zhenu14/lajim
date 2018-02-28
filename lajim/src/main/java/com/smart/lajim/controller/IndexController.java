@@ -34,4 +34,9 @@ public class IndexController {
         return "shiroIndex";
     }
 
+    @RequestMapping("/jq.html")
+    public String jq(){
+        return "jqgrid";
+    }
+
 }

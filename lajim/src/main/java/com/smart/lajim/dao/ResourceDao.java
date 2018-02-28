@@ -1,6 +1,7 @@
 package com.smart.lajim.dao;
 
 import com.smart.lajim.domain.Resource;
+import com.smart.lajim.domain.ResourceTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -73,5 +74,10 @@ public class ResourceDao {
     public List<Resource> findAll() {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));
+    }
+
+    public List<ResourceTree> findAll2() {
+        final String sql = "select id, name, type, url, permission, parent_id as _parentId, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper(ResourceTree.class));
     }
 }
